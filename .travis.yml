@@ -19,3 +19,16 @@ after_sucess:
     - docker push jmor/glorified-fib-server
     - docker push jmor/glorified-fib-worker
     - docker push jmor/glorified-fib-nginx
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: glorified-fib 
+    env: GlorifiedFib-env
+    bucket-name: elasticbeanstalk-us-east-2-640066151654
+    bucket-path: glorified-fib
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+        secure: $AWS_SECRET_KEY
